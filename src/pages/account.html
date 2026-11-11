@@ -1,0 +1,33 @@
+<!--meta
+{"title": "My Account | Supplements by Hazel", "description": "Log in to see your Supplements by Hazel orders, subscription and delivery address.", "nav": "account", "noindex": true, "scripts": ["account"]}
+-->
+<section class="page-head">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb" style="padding-top:0;margin-bottom:22px"><a href="/">Home</a><span aria-hidden="true">/</span>Account</nav>
+    <h1>My account</h1>
+    <p class="lead" id="account-intro">Log in to see your subscription, your orders and your delivery address.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div id="account" class="account" aria-live="polite">
+      <div class="skeleton"></div><div class="skeleton short"></div>
+    </div>
+  </div>
+</section>
+
+<section id="manage" class="manage" hidden style="padding-top:0">
+  <div class="wrap">
+    <div class="help-block">
+      <aside>
+        <h2>Manage my subscription</h2>
+        <p>To pause, change your delivery address or update your payment card, get in touch and we'll make the change and email you to confirm.</p>
+      </aside>
+      <div class="contact-cards">
+        <a href="mailto:{{email}}?subject=My%20subscription"><span>Email</span><strong>{{email}}</strong></a>
+        <a href="tel:{{phone_tel}}"><span>Phone</span><strong>{{phone}}</strong></a>
+      </div>
+    </div>
+  </div>
+</section>

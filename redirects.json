@@ -1,0 +1,20 @@
+{
+  "/shop-all": "/shop.html",
+  "/clarity": "/clarity.html",
+  "/product-page/clarity": "/clarity.html",
+  "/peri": "/peri.html",
+  "/rosy": "/rosy.html",
+  "/hair-skin": "/hair-skin.html",
+  "/perform-for-men": "/perform.html",
+  "/peri-bundle": "/wellbeing-bundle.html",
+  "/hormone-health-support": "/hormone-health-bundle.html",
+  "/abouthazel": "/about.html",
+  "/meet-hazel": "/about.html#hazel",
+  "/meet-the-team": "/about.html#team",
+  "/blog": "/blog.html",
+  "/faqs": "/help.html",
+  "/contact": "/help.html#contact",
+  "/terms": "/terms.html",
+  "/post/:slug": "/post.html?slug=:slug",
+  "/product-page/:slug": "/shop.html"
+}
