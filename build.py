@@ -30,7 +30,7 @@ PHONE = "0117 462 3935"
 PHONE_TEL = "+441174623935"
 
 # The thin bar above the header. Change it for each promotion, or set it to "" to hide it.
-ANNOUNCE = 'Movember: <strong>25% off Perform</strong> · <strong>50% off Rosy</strong>, taken off in your basket'
+ANNOUNCE = '<strong>50% off Rosy</strong>, taken off in your basket'
 
 e = html.escape
 W = "https://static.wixstatic.com/media/"
@@ -480,7 +480,7 @@ def shop_page():
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "url": f'{SITE}/{p["file"]}', "name": p["name"]} for i, p in enumerate(items)]}]
     meta = {"path": "shop.html", "title": "Shop | Supplements by Hazel", "nav": "shop", "ld": ld,
-            "description": "Shop Clarity, Peri, Rosy, Hair & Skin and Perform, plus the Wellbeing and Hormone Health bundles. Formulated by Hazel Hayden, made in the UK. Save on 3 and 6 tubs."}
+            "description": "Shop Clarity, Peri, Rosy and Hair & Skin, plus the Wellbeing and Hormone Health bundles. Formulated by Hazel Hayden, made in the UK. Save on 3 and 6 tubs."}
     return page(meta, body)
 
 
@@ -509,7 +509,7 @@ def src_page(path):
 REDIRECTS = {
     "/shop-all": "/shop.html", "/clarity": "/clarity.html", "/product-page/clarity": "/clarity.html",
     "/peri": "/peri.html", "/rosy": "/rosy.html", "/hair-skin": "/hair-skin.html",
-    "/perform-for-men": "/perform.html", "/peri-bundle": "/wellbeing-bundle.html",
+    "/perform-for-men": "https://www.performformen.co.uk/", "/perform.html": "https://www.performformen.co.uk/", "/peri-bundle": "/wellbeing-bundle.html",
     "/hormone-health-support": "/hormone-health-bundle.html", "/abouthazel": "/about.html",
     "/meet-hazel": "/about.html#hazel", "/meet-the-team": "/about.html#team", "/blog": "/blog.html",
     "/faqs": "/help.html", "/contact": "/help.html#contact", "/terms": "/terms.html",

@@ -193,51 +193,6 @@ PRODUCTS = {
         "blog": "hair-skin-daily-beauty-support-for-healthy-hair-skin-and-nails",
         "related": ["clarity", "rosy", "peri"],
     },
-    "perform": {
-        "file": "perform.html",
-        "name": "Perform",
-        "acc": "perform",
-        "stage": "For men",
-        "menu_note": "Daily nutrition for men",
-        "card": "Ten active ingredients for men, including magnesium, zinc and KSM-66 Ashwagandha.",
-        "tagline": "Built to support men's everyday health",
-        "title": "Perform | Daily Supplement for Men | Supplements by Hazel",
-        "description": "Perform is a daily supplement for men with ten active ingredients, including magnesium, zinc, vitamins B6 and D3 and KSM-66 Ashwagandha. Formulated by Hazel Hayden, made in the UK.",
-        "image": W + "3ea36e_d30eb89887fe4a94a21fdc83902170bd~mv2.png",
-        "gallery": [W + "f6f1f2_b75670f56eb84d62808823df60306506~mv2.png", W + "3ea36e_d30eb89887fe4a94a21fdc83902170bd~mv2.png"],
-        "alt": "A tub of Perform by Supplements by Hazel, a black jar with a navy label",
-        "packs": [("perform", "1 tub", "1 month"), ("perform-3-tubs-save-10", "3 tubs", "Save 10%"), ("perform-6-tubs-save-15", "6 tubs", "Save 15%")],
-        "chips": ["Ten active ingredients", "Vegetarian", "Made in the UK"],
-        "intro": [
-            "Perform is a daily supplement designed for men's nutritional needs during busy, demanding lives. It combines essential vitamins and minerals with selected botanicals and amino acids, in well-researched forms and meaningful amounts.",
-            "Perform has its own home at performformen.co.uk, with the full label and formula.",
-        ],
-        "why": [
-            ("Designed for men", "Ten active ingredients, with every amount printed on the tub."),
-            ("Well-absorbed forms", "Magnesium bisglycinate, P5P vitamin B6 and zinc citrate."),
-            ("Vegetarian capsule", "Plant-based capsule shell and vitamin D3 from a vegan source."),
-            ("No unnecessary fillers", "Developed to complement a healthy lifestyle and balanced diet."),
-        ],
-        "note": "Perform is my formula for men: the same links between energy, sleep, mood and hormonal health that I see in clinic, with every amount printed on the tub.",
-        "formula_intro": "Key vitamins and minerals in Perform, and what they contribute to.",
-        "ingredients": [
-            ("Magnesium (bisglycinate)", "For muscles and energy", ["Contributes to normal muscle function*", "Contributes to normal energy-yielding metabolism*", "Contributes to the reduction of tiredness and fatigue*"]),
-            ("Zinc (citrate)", "For testosterone and immunity", ["Contributes to the maintenance of normal testosterone levels in the blood*", "Contributes to the normal function of the immune system*"]),
-            ("Vitamin B6 (P5P)", "For energy and mind", ["Contributes to normal energy-yielding metabolism*", "Contributes to normal psychological function*"]),
-            ("Vitamin D3", "For bones and muscles", ["Contributes to the maintenance of normal bones*", "Contributes to normal muscle function*"]),
-        ],
-        "how": "Take four capsules a day with food: two in the morning and two in the evening.",
-        "review": ("It's a great supplement which has added to my overall well-being. I really like that all the vitamins I need are in this one supplement rather than having to take 2 or 3 tablets. Definitely recommend.", "Supplements by Hazel customer"),
-        "faqs": [
-            ("How do I take Perform?", ["Take four capsules a day with food: two in the morning and two in the evening. Do not exceed the stated dose."]),
-            ("Is Perform suitable for vegetarians?", ["Yes. The capsule shell is plant-based (HPMC) and the vitamin D3 is from a vegan source."]),
-            ("Can I take Perform with medication?", ["If you take any medication or have a medical condition, check with your GP or pharmacist before starting a new supplement."]),
-            ("Is there anything else I should know?", ["Long-term intake of this amount of vitamin B6 may lead to mild tingling and numbness."]),
-        ],
-        "external": ("Visit performformen.co.uk", "https://www.performformen.co.uk"),
-        "blog": "nutritional-support-for-men-in-midlife-boost-energy-performance-and-vitality",
-        "related": ["clarity", "hair-skin", "rosy"],
-    },
     "wellbeing": {
         "file": "wellbeing-bundle.html",
         "name": "Wellbeing Support Bundle",
@@ -317,7 +272,7 @@ PRODUCTS = {
 }
 
 # Order on the shop page and in the menu
-SINGLES = ["clarity", "peri", "rosy", "hair-skin", "perform"]
+SINGLES = ["clarity", "peri", "rosy", "hair-skin"]
 BUNDLES = ["wellbeing", "hormone"]
 EXTRAS = ["iron"]
 
