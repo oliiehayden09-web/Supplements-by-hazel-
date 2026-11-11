@@ -34,16 +34,7 @@ Change the announcement bar in `build.py` (`ANNOUNCE`).
 
 ## Deploying
 
-The live site is a classic Wix Editor site. It moves to this code through Wix's **Go Headless**
-migration (dashboard → Settings → Headless), which keeps the store, orders, customers, blog,
-subscriptions and domain. Wix hosts a preview first; the live site switches only when the migration
-is completed. At deploy time:
+The site is live at https://www.supplementsbyhazel.com (Wix Go Headless migration completed
+11 Nov 2026). To release a change, follow `deploy/README.md`.
 
-The migration is under way. The site is released to its preview at
-https://headless-wbdldqytajr-customerservices820-1413.wix-site-host.com from the Wix Astro project
-Wix provides (the download in Headless Settings): `public/` is copied into that project's `public/`,
-`src/pages/index.astro` and `404.astro` serve `index.html` and `404.html`, one small `.astro` page per
-entry in `redirects.json` returns a 301, and the `@wix/astro-pages` integration is removed. Build with
-`WIX_CLIENT_ID=<client id> npx astro build` and release through the Wix MCP upload tool.
-
-`public/js/wix/config.js` holds the site's public client id (`d8aa01b1-…`). It is not a secret.
+`public/js/wix/config.js` holds the site's public client id. It is not a secret.
