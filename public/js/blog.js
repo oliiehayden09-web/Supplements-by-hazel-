@@ -53,7 +53,7 @@ if (list) {
     try {
       let offset = 0;
       for (;;) {
-        const r = await wixRequest("/v3/posts", { query: { "paging.limit": "100", "paging.offset": String(offset), sort: "PUBLISHED_DATE_DESC" } });
+        const r = await wixRequest("/v3/posts", { method: "GET", query: { "paging.limit": "100", "paging.offset": String(offset), sort: "PUBLISHED_DATE_DESC" } });
         posts.push(...(r?.posts || []));
         if (!r?.posts?.length || r.posts.length < 100) break;
         offset += 100;
@@ -108,7 +108,7 @@ if (article) {
   (async () => {
     try {
       if (!slug) throw new Error("no slug");
-      const r = await wixRequest(`/v3/posts/slugs/${encodeURIComponent(slug)}`, { query: { fieldsets: ["RICH_CONTENT", "URL"] } });
+      const r = await wixRequest(`/v3/posts/slugs/${encodeURIComponent(slug)}`, { method: "GET", query: { fieldsets: ["RICH_CONTENT", "URL"] } });
       const p = r?.post;
       if (!p) throw new Error("not found");
       document.title = `${p.title} | Supplements by Hazel`;

@@ -120,7 +120,7 @@ let saving = false;
 async function loadAccount(memberId) {
   loadingFor = memberId;
   let profile = null;
-  try { profile = (await wixRequest("/members/v1/members/my", { query: { fieldsets: "FULL" } }))?.member ?? null; } catch { /* shown as unavailable */ }
+  try { profile = (await wixRequest("/members/v1/members/my", { method: "GET", query: { fieldsets: "FULL" } }))?.member ?? null; } catch { /* shown as unavailable */ }
   const contactId = profile?.contactId || getMemberState().member?.contactId || "";
   const [s, o] = await Promise.allSettled([
     wixRequest("/ecom/subscription-contracts/v1/subscription-contracts/query", { method: "POST", body: { query: { filter: { "buyerInfo.contactId": { $eq: contactId } }, cursorPaging: { limit: 20 } } } }),
