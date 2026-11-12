@@ -19,6 +19,9 @@ CLAIMS_NOTE = "*Claims authorised under the EU/UK Nutrition and Health Claims Re
 
 PRODUCTS = {
     "clarity": {
+        "benefits": ["Reduction of tiredness and fatigue*", "Normal psychological function*", "Maintenance of normal bones*"],
+        "badges": ["Vegan"],
+        "goals": ["energy", "mood", "bones", "immunity", "menopause", "perimenopause"],
         "file": "clarity.html",
         "name": "Clarity",
         "acc": "clarity",
@@ -63,6 +66,9 @@ PRODUCTS = {
         "related": ["peri", "rosy", "hair-skin"],
     },
     "peri": {
+        "benefits": ["Maintenance of normal skin and hair*", "Normal energy-yielding metabolism*", "Ashwagandha and saffron"],
+        "badges": ["Vegetarian"],
+        "goals": ["perimenopause", "hair-skin", "energy"],
         "file": "peri.html",
         "name": "Peri",
         "acc": "peri",
@@ -106,6 +112,9 @@ PRODUCTS = {
         "related": ["clarity", "hair-skin", "wellbeing"],
     },
     "rosy": {
+        "benefits": ["Normal psychological function*", "Normal collagen formation*", "Maintenance of normal bones*"],
+        "badges": ["Vegan"],
+        "goals": ["post", "mood", "bones", "immunity"],
         "file": "rosy.html",
         "name": "Rosy",
         "acc": "rosy",
@@ -150,6 +159,9 @@ PRODUCTS = {
         "related": ["clarity", "hair-skin", "hormone"],
     },
     "hair-skin": {
+        "benefits": ["Maintenance of normal skin, hair and nails*", "Normal collagen formation*", "With marine collagen"],
+        "badges": [],
+        "goals": ["hair-skin", "immunity", "menopause"],
         "file": "hair-skin.html",
         "name": "Hair & Skin",
         "acc": "hair-skin",
@@ -194,6 +206,9 @@ PRODUCTS = {
         "related": ["clarity", "rosy", "peri"],
     },
     "wellbeing": {
+        "benefits": ["Clarity, Peri and Hair & Skin", "Save 10% on 3 months, 15% on 6", "Free gift with your first order"],
+        "badges": ["Bundle & Save"],
+        "goals": ["perimenopause", "energy", "hair-skin"],
         "file": "wellbeing-bundle.html",
         "name": "Wellbeing Support Bundle",
         "short": "Wellbeing Bundle",
@@ -219,6 +234,9 @@ PRODUCTS = {
         "related": ["hormone", "clarity", "peri"],
     },
     "hormone": {
+        "benefits": ["Clarity, Rosy and Hair & Skin", "Save 10% on 3 months, 15% on 6", "Free gift with your first order"],
+        "badges": ["Bundle & Save"],
+        "goals": ["menopause", "post", "mood", "energy", "hair-skin"],
         "file": "hormone-health-bundle.html",
         "name": "Hormone Health Support Bundle",
         "short": "Hormone Health Bundle",
@@ -244,6 +262,9 @@ PRODUCTS = {
         "related": ["wellbeing", "rosy", "clarity"],
     },
     "iron": {
+        "benefits": ["50mg of elemental iron", "Vegetable cellulose capsule", "Two months' supply"],
+        "badges": [],
+        "goals": [],
         "file": "iron.html",
         "name": "High Strength Iron",
         "acc": "iron",
@@ -270,6 +291,18 @@ PRODUCTS = {
         "simple": True,
     },
 }
+
+# Shop by health goal: (key, label, short description). Products list their goals above.
+GOALS = [
+    ("energy", "Energy", "Tiredness and fatigue"),
+    ("mood", "Mood & mind", "Psychological function"),
+    ("hair-skin", "Hair, skin & nails", "From within"),
+    ("bones", "Bones & muscles", "Strength as you age"),
+    ("immunity", "Immunity", "All year round"),
+    ("perimenopause", "Perimenopause", "When things start to change"),
+    ("menopause", "Menopause", "Through the transition"),
+    ("post", "Post-menopause", "Life after the change"),
+]
 
 # Order on the shop page and in the menu
 SINGLES = ["clarity", "peri", "rosy", "hair-skin"]

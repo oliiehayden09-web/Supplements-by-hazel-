@@ -33,6 +33,30 @@
     var d = document.querySelector(".has-menu .drop"); if (d) d.style.fontWeight = "500";
   }
 
+  // Shop page: filter the products by health goal (?goal=energy). Links still work without script.
+  var grid = document.querySelector("[data-filterable]");
+  if (grid) {
+    var LABELS = {};
+    document.querySelectorAll(".chip[data-goal]").forEach(function (c) { LABELS[c.dataset.goal] = c.textContent; });
+    var applyGoal = function (goal) {
+      grid.querySelectorAll(".card").forEach(function (card) {
+        card.hidden = !!goal && (" " + card.dataset.goals + " ").indexOf(" " + goal + " ") === -1;
+      });
+      document.querySelectorAll(".chip[data-goal]").forEach(function (c) { c.setAttribute("aria-current", c.dataset.goal === goal ? "true" : "false"); });
+      var note = document.querySelector("[data-goal-note]");
+      if (note) { note.hidden = !goal; note.textContent = goal ? "Showing products for " + (LABELS[goal] || goal).toLowerCase() + "." : ""; }
+    };
+    document.querySelectorAll(".chip[data-goal]").forEach(function (c) {
+      c.addEventListener("click", function (e) {
+        e.preventDefault();
+        var g = c.dataset.goal;
+        history.replaceState(null, "", g ? "?goal=" + g + "#products" : location.pathname + "#products");
+        applyGoal(g);
+      });
+    });
+    applyGoal(new URLSearchParams(location.search).get("goal") || "");
+  }
+
   // Content rises in as it scrolls into view.
   var items = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {

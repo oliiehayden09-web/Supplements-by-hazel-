@@ -4,102 +4,93 @@
  "nav": "home",
  "ld": [{"@context": "https://schema.org", "@type": "WebSite", "name": "Supplements by Hazel", "url": "https://www.supplementsbyhazel.com/", "publisher": {"@id": "https://www.supplementsbyhazel.com/#org"}}]}
 -->
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow">Nutritional support for long-term wellness</span>
-      <h1>Your health. Our science. <em>Made to last.</em></h1>
-      <p class="lead">Clean, carefully formulated supplements for every stage of midlife, created by Hazel Hayden, Consultant Nurse and British Menopause Society Registered Specialist, after 38 years in the NHS.</p>
-      <div class="actions">
-        <a class="btn" href="/shop.html">Shop the range</a>
-        <a class="textlink arrow" href="#find">Find your formula</a>
+
+<!-- Hero photo: replace HERO-IMAGE below with a new lifestyle photo when you have one. -->
+<section class="hero-full">
+  <img class="hero-bg" src="https://static.wixstatic.com/media/f6f1f2_cd06a2da20fc4ab3b96578892ab39fbe~mv2.jpeg/v1/fill/w_1920,h_1100,al_t,q_85,enc_auto/hero.webp" alt="" width="1920" height="1100" fetchpriority="high" data-hero="HERO-IMAGE">
+  <div class="wrap hero-copy">
+    <span class="eyebrow">Created by a Consultant Nurse &amp; menopause specialist</span>
+    <h1>Your health. Our science. <em>Made to last.</em></h1>
+    <p>Clean, clinically led supplements for every stage of midlife.</p>
+    <div class="actions">
+      <a class="btn light" href="/shop.html">Shop bestsellers</a>
+      <a class="btn ghost" href="/quiz.html">Take the quiz</a>
+    </div>
+  </div>
+</section>
+
+<section class="trust-strip" aria-label="Why shop with us">
+  <ul class="wrap">
+    <li>{{icon_steth}}<span>Formulated by a<br>Consultant Nurse</span></li>
+    <li>{{icon_flag}}<span>Made in<br>the UK</span></li>
+    <li>{{icon_repeat}}<span>Subscribe &amp; save,<br>cancel any time</span></li>
+    <li>{{icon_leaf}}<span>Biodegradable<br>packaging</span></li>
+    <li>{{icon_heart}}<span><a href="https://www.trustpilot.com/review/www.menopausebyhazel.com" target="_blank" rel="noopener">Reviewed on<br>Trustpilot</a></span></li>
+  </ul>
+</section>
+
+<section class="bestsellers">
+  <div class="wrap best-grid">
+    <div class="best-intro reveal">
+      <span class="eyebrow">Our range</span>
+      <h2>The daily rituals you'll want to return to</h2>
+      <p class="lead">Every formula has a clear purpose, with no unnecessary fillers or bulking agents.</p>
+      <div class="best-actions">
+        <a class="btn" href="/shop.html">Shop all</a>
+        <a class="btn line" href="/quiz.html">Take the quiz</a>
       </div>
-      <ul class="trust-row">
-        <li>{{icon_flag}}Made in the UK</li>
-        <li>{{icon_leaf}}Biodegradable packaging</li>
-        <li>{{icon_steth}}Clinically led</li>
-      </ul>
     </div>
-    <figure>
-      <img src="https://static.wixstatic.com/media/f6f1f2_b18172219e194152b95ec0dc1a4557c6~mv2.png/v1/fill/w_1000,h_1000,al_c,q_85,enc_auto/hormone-health-bundle.webp" alt="Tubs of Rosy, Clarity and Hair & Skin by Supplements by Hazel" width="1000" height="1000" fetchpriority="high">
-    </figure>
-  </div>
-</section>
-
-<section id="find" class="alt">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Find your formula</span>
-      <h2>Where are you right now?</h2>
-      <p class="lead">Each formula is designed for a different stage of life. Start with the one that sounds like you.</p>
-    </div>
-    <ul class="stages">
-      <li class="reveal"><a href="/peri.html" data-acc="peri"><span class="stage">Pre-midlife</span><span class="q">Things are starting to change</span><span class="a">Peri: ashwagandha, saffron and biotin for hair, skin and energy.*</span><span class="go">Meet Peri</span></a></li>
-      <li class="reveal"><a href="/clarity.html" data-acc="clarity"><span class="stage">Midlife</span><span class="q">I want steady, everyday support</span><span class="a">Clarity: magnesium, vitamin D, B12 and live cultures, once a day.*</span><span class="go">Meet Clarity</span></a></li>
-      <li class="reveal"><a href="/rosy.html" data-acc="rosy"><span class="stage">Post-midlife</span><span class="q">I'm through the transition</span><span class="a">Rosy: vitamins C and D3 with L-theanine, in one evening capsule.*</span><span class="go">Meet Rosy</span></a></li>
-      <li class="reveal"><a href="/hair-skin.html" data-acc="hair-skin"><span class="stage">Every stage</span><span class="q">I want to look after my hair, skin and nails</span><span class="a">Hair &amp; Skin: vitamin C, biotin, zinc and marine collagen.*</span><span class="go">Meet Hair &amp; Skin</span></a></li>
-    </ul>
-    <p class="footnote center">*Claims authorised under the EU/UK Nutrition and Health Claims Register.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our products</span>
-      <h2>Expertly created. Thoughtfully formulated.</h2>
-      <p class="lead">Every formula has a clear purpose, with no unnecessary additives, fillers or bulking agents.</p>
-    </div>
-    <div class="product-grid">
+    <div class="product-grid best-cards">
 {{products_singles}}
     </div>
   </div>
 </section>
 
-<section class="alt">
+<section class="goal-band">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Bundles</span>
-      <h2>Three formulas, one routine</h2>
-      <p class="lead">Save with a bundle, and enjoy a free gift with your first order.</p>
-    </div>
-    <div class="product-grid three">
-{{products_bundles}}
-    </div>
+    <div class="goal-head"><h2>Shop by health goal</h2><a class="textlink light arrow" href="/shop.html#goals">See everything</a></div>
+    <ul class="goal-tiles">{{goal_tiles}}</ul>
+    <p class="footnote light">Each goal links to products with authorised nutrition and health claims for it.</p>
   </div>
 </section>
 
-<section class="alt">
-  <div class="wrap">
-    <div class="values reveal">
-      <div>{{icon_steth}}<h3>Clinically led</h3><p>Formulated by a Consultant Nurse with 38 years in the NHS and a Diploma in Nutrition.</p></div>
-      <div>{{icon_leaf}}<h3>Nothing unnecessary</h3><p>No fillers or bulking agents. Every ingredient is there for a reason.</p></div>
-      <div>{{icon_flag}}<h3>Made in the UK</h3><p>Made in the UK and packed in biodegradable packaging.</p></div>
-      <div>{{icon_shield}}<h3>Honest claims</h3><p>Health claims only from the authorised EU/UK register. No fads, no confusion.</p></div>
-    </div>
+<section>
+  <div class="wrap feature-tiles">
+    <a class="feature reveal" href="/hormone-health-bundle.html">
+      <img src="https://static.wixstatic.com/media/f6f1f2_b18172219e194152b95ec0dc1a4557c6~mv2.png/v1/fill/w_900,h_640,al_c,q_85,enc_auto/bundle.webp" alt="Rosy, Clarity and Hair &amp; Skin together" width="900" height="640" loading="lazy">
+      <span class="feature-copy"><strong>Stack and save with a bundle</strong><span class="btn light">Shop bundles</span></span>
+    </a>
+    <a class="feature reveal" href="/quiz.html">
+      <img src="https://static.wixstatic.com/media/f6f1f2_e3d2262ccdc440aea4d89b887e5b8b75~mv2.png/v1/fill/w_900,h_640,al_c,q_85,enc_auto/quiz.webp" alt="A tub of Peri on a shelf" width="900" height="640" loading="lazy">
+      <span class="feature-copy"><strong>Not sure where to start?</strong><span class="btn light">Find your formula</span></span>
+    </a>
   </div>
 </section>
 
-<section id="hazel">
+{{why_subscribe}}
+
+<section id="hazel" class="experts">
   <div class="wrap hazel-grid">
     <figure class="reveal">
       <img src="https://static.wixstatic.com/media/f6f1f2_cd06a2da20fc4ab3b96578892ab39fbe~mv2.jpeg/v1/fill/w_880,h_1100,al_c,q_85,enc_auto/hazel-hayden.webp" alt="Hazel Hayden, founder of Supplements by Hazel" width="880" height="1100" loading="lazy">
     </figure>
     <div class="reveal">
-      <span class="eyebrow">Meet Hazel</span>
-      <h2>A trusted voice in midlife wellness</h2>
+      <span class="eyebrow">Clinically led</span>
+      <h2>Expert care behind every capsule</h2>
       <div class="prose">
-        <p>Hazel Hayden is a Consultant Nurse and British Menopause Society Registered Specialist and Trainer, with 38 years in the NHS and nearly two decades focused on midlife health. She founded the Bristol Menopause Clinic and holds a Master's degree in Sexual Health in Menopause and a Diploma in Nutrition.</p>
-        <p>Her approach is holistic, recognising the connection between lifestyle, nutrition and overall health. She also works in men's health, and trains healthcare professionals across the UK on midlife health for women and men.</p>
+        <p>Hazel Hayden is a Consultant Nurse and British Menopause Society Registered Specialist and Trainer, with 38 years in the NHS. She founded the Bristol Menopause Clinic and Bristol Health Hub, where women and men receive personal, evidence-based care.</p>
+        <p>Supplements by Hazel comes from the same place: food supplements made to the standard she wanted for her own patients. She takes the ones she recommends herself.</p>
       </div>
-      <ul class="creds">
-        <li>Consultant Nurse</li><li>BMS Registered Specialist</li><li>MSc, Sexual Health in Menopause</li><li>Diploma in Nutrition</li>
+      <ul class="ticks" style="margin-top:20px">
+        <li>Consultant Nurse and BMS Registered Specialist</li>
+        <li>MSc, Sexual Health in Menopause, and a Diploma in Nutrition</li>
+        <li>Personal care for women and men at her Bristol clinics</li>
       </ul>
-      <p class="sig">Hazel takes every supplement she recommends.</p>
-      <div class="actions" style="margin-top:24px">
-        <a class="btn" href="/about.html">Read our story</a>
-        <a class="textlink arrow" href="/post.html?slug=at-63-i-take-the-supplements-i-recommend-here-s-why">Why Hazel takes her own supplements</a>
+      <div class="actions" style="margin-top:26px">
+        <a class="btn" href="https://www.bristolmenopause.com/" target="_blank" rel="noopener">{{icon_chat}} Book a consultation</a>
+        <a class="textlink arrow" href="/about.html#hazel">Meet Hazel</a>
       </div>
+      <p class="hint" style="margin-top:12px">Consultations are with the Bristol Menopause &amp; Wellwoman Clinic.</p>
     </div>
   </div>
 </section>

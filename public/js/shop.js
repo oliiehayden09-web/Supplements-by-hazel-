@@ -8,7 +8,7 @@ import { createProductDetailStore, ONE_TIME_PLAN } from "/js/wix/product-detail-
 import { fetchProducts } from "/js/wix/catalog.js";
 import {
   subscribeCart, getCartState, updateLineQuantity, removeCartLine,
-  goToCheckout, setCartOpen,
+  goToCheckout, setCartOpen, addLine,
 } from "/js/wix/cart-store.js";
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -22,6 +22,11 @@ const slots = document.querySelectorAll("[data-price-slug]");
 if (slots.length) {
   fetchProducts({ limit: 100 }).then((list) => {
     const bySlug = new Map(list.map((p) => [p.slug, p]));
+    cardProducts = bySlug;
+    document.querySelectorAll("[data-quick-add]").forEach((b) => {
+      const p = bySlug.get(b.dataset.quickAdd);
+      if (!p || (p.availability === "OUT_OF_STOCK" && !p.preorder)) { b.disabled = true; b.title = p ? "Out of stock" : "Unavailable"; }
+    });
     slots.forEach((el) => {
       const p = bySlug.get(el.dataset.priceSlug);
       if (!p) { el.textContent = ""; return; }
@@ -41,6 +46,17 @@ if (slots.length) {
   }).catch(() => slots.forEach((el) => { el.textContent = ""; }));
 }
 
+let cardProducts = null;
+document.addEventListener("click", async (e) => {
+  const b = e.target.closest("[data-quick-add]");
+  if (!b || b.disabled) return;
+  const p = cardProducts?.get(b.dataset.quickAdd);
+  if (!p) return;
+  b.disabled = true; b.classList.add("busy");
+  try { await addLine(p.id, p.minPriceVariantId); } catch { /* the basket shows the error */ }
+  b.disabled = false; b.classList.remove("busy");
+});
+
 /* ---------- gallery thumbnails ---------- */
 document.querySelectorAll("[data-thumb]").forEach((b) => b.addEventListener("click", () => {
   const main = $("#shop-img");
@@ -56,7 +72,8 @@ if (buy) {
   const unit = buy.dataset.unit || "tub";
   const stores = packs.map((p) => createProductDetailStore({ slug: p.slug }));
   let active = 0;
-  let subscribing = false;
+  let subscribing = true; // Subscribe & save is selected first, as on most supplement shops
+  const planSet = packs.map(() => false);
 
   const planOf = (s) => (s.plans || []).find((pl) => pl.visible !== false) || null;
   const every = (pl) => {
@@ -68,6 +85,7 @@ if (buy) {
 
   function choosePack(i) {
     active = i;
+    planSet[i] = true;
     const s = stores[i].getState();
     const plan = planOf(s);
     stores[i].selectPlan(subscribing && plan ? plan.id : ONE_TIME_PLAN);
@@ -76,6 +94,7 @@ if (buy) {
   }
   function chooseBuyType(sub) {
     subscribing = sub;
+    planSet[active] = true;
     const s = stores[active].getState();
     const plan = planOf(s);
     stores[active].selectPlan(sub && plan ? plan.id : ONE_TIME_PLAN);
@@ -95,6 +114,7 @@ if (buy) {
     if (!p) return; // skeleton stays until the active pack has loaded
 
     const plan = planOf(s);
+    if (!planSet[active]) { planSet[active] = true; if (subscribing && plan) { stores[active].selectPlan(plan.id); return; } }
     const sub = subscribing && !!plan;
     const outOf = (x) => x.product && !x.canAdd && !x.isPreorder && /stock/i.test(x.blockedReason || "out of stock");
 
@@ -112,22 +132,22 @@ if (buy) {
       </div></fieldset>` : "";
 
     const planPrice = plan ? (s.variant?.subscriptionPrices?.[plan.id] || plan.price || "") : "";
+    const pk = packs[active];
     const buyTypeHtml = plan && p.allowOneTimePurchase !== false ? `
-      <fieldset class="picker"><legend>How to buy</legend><div class="choices two" role="radiogroup" aria-label="How to buy">
-        <button type="button" class="choice" role="radio" aria-checked="${!sub}" data-buytype="once">
-          <span class="choice-name">One-time purchase</span><span class="choice-note">${esc(s.variant?.price || p.price)}</span>
+      <fieldset class="picker"><legend>How to buy</legend><div class="buy-types" role="radiogroup" aria-label="How to buy">
+        <button type="button" class="buy-type${sub ? " on" : ""}" role="radio" aria-checked="${sub}" data-buytype="sub">
+          <span class="bt-row"><span class="bt-dot"></span><span class="choice-name">Subscribe &amp; save</span><span class="save-pill">Save ${esc(savePct(plan))}%</span><span class="bt-price">${s.variant?.price ? `<s>${esc(s.variant.price)}</s>` : ""}${esc(planPrice)}</span></span>
+          ${sub ? `<span class="bt-perks"><span>How subscriptions work</span>
+            <span>${esc(savePct(plan))}% off every delivery${active > 0 ? `, on top of the ${esc((pk.note || "").replace(/^save\s*/i, "").toLowerCase())} multi-buy saving` : ""}</span>
+            <span>${esc(pk.label)} delivered ${esc(every(plan))}</span>
+            <span>No minimum term: change or cancel any time</span></span>` : ""}
         </button>
-        <button type="button" class="choice" role="radio" aria-checked="${sub}" data-buytype="sub">
-          <span class="choice-name">Subscribe &amp; save ${esc(savePct(plan))}%</span><span class="choice-note">${esc(planPrice)} ${esc(every(plan))}</span>
+        <button type="button" class="buy-type${!sub ? " on" : ""}" role="radio" aria-checked="${!sub}" data-buytype="once">
+          <span class="bt-row"><span class="bt-dot"></span><span class="choice-name">One-time purchase</span><span class="bt-price">${esc(s.variant?.price || p.price)}</span></span>
         </button>
       </div></fieldset>` : "";
 
-    const pk = packs[active];
-    const subTerms = sub ? `<ul class="sub-terms">
-        <li>${esc(pk.label)} of ${esc(name)} delivered ${esc(every(plan))}</li>
-        <li>${esc(savePct(plan))}% off every delivery${active > 0 ? `, on top of the ${esc((pk.note || "").replace(/^save\s*/i, "").toLowerCase())} multi-buy saving` : ""}</li>
-        <li>No minimum term. Cancel any time</li>
-      </ul>` : "";
+    const subTerms = "";
 
     const atMax = s.quantity >= s.maxQuantity;
     const struck = sub ? (s.variant?.price || "") : (s.compareAtPrice || "");
@@ -154,6 +174,15 @@ if (buy) {
       ${s.error ? `<p class="err" role="alert">${esc(s.error)}</p>` : ""}
     `;
 
+    const sb = document.getElementById("sticky-buy");
+    if (sb) {
+      sb.querySelector("[data-sticky-price]").textContent = s.price + (sub ? ` ${every(plan)}` : "");
+      sb.querySelector("[data-sticky-note]").textContent = `${pk.label}${sub ? " · Subscribe & save" : ""}`;
+      const btn = sb.querySelector("[data-sticky-add]");
+      btn.disabled = !s.canAdd || s.adding;
+      btn.textContent = s.adding ? "Adding…" : !s.canAdd ? "Out of stock" : sub ? "Subscribe" : "Add to basket";
+    }
+
     // the pack's own photo, once (the page shows the range photo until a pack is chosen)
     if (active > 0 && s.imageUrl) { const img = $("#shop-img"); const src = sized(s.imageUrl, 1000, 1000); if (img && img.getAttribute("src") !== src) img.src = src; }
   }
@@ -170,6 +199,13 @@ if (buy) {
   });
 
   stores.forEach((st) => { st.selectPlan(ONE_TIME_PLAN); st.subscribe(render); st.start(); });
+
+  // the bar that keeps "Add to basket" on screen once the buy box has scrolled away
+  const sticky = document.getElementById("sticky-buy");
+  if (sticky && "IntersectionObserver" in window) {
+    new IntersectionObserver(([en]) => { sticky.hidden = en.isIntersecting || en.boundingClientRect.top > 0; }).observe(buy);
+    sticky.addEventListener("click", (e) => { if (e.target.closest("[data-sticky-add]")) stores[active].add().catch(() => {}); });
+  }
 }
 
 /* ---------- basket drawer ---------- */

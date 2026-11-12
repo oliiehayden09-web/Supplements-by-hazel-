@@ -55,6 +55,18 @@ ICONS = {
     "heart": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>',
     "truck": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>',
     "repeat": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11V9a3 3 0 0 1 3-3h12l-3-3M20 13v2a3 3 0 0 1-3 3H5l3 3"/></svg>',
+    "bolt": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
+    "mind": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0M9 9.5h.01M15 9.5h.01"/></svg>',
+    "sparkle": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/></svg>',
+    "bone": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 4.5a2.5 2.5 0 0 0-3.4 3.4 2.5 2.5 0 0 0 2.4 3.6l7 7a2.5 2.5 0 0 0 3.6 2.4 2.5 2.5 0 0 0 3.4-3.4 2.5 2.5 0 0 0-2.4-3.6l-7-7A2.5 2.5 0 0 0 7.5 4.5z"/></svg>',
+    "moon": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>',
+    "flower": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="10" r="2.5"/><path d="M12 7.5C12 4 9 3 9 3s-1 3 3 4.5zM14.5 10c3.5 0 4.5-3 4.5-3s-3-1-4.5 3zM12 12.5c0 3.5 3 4.5 3 4.5s1-3-3-4.5zM9.5 10C6 10 5 13 5 13s3 1 4.5-3zM12 13v8"/></svg>',
+    "sun": '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    "quiz": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+    "gift": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v9h14v-9M12 8v13M12 8S10.5 3 8 4.5 9.5 8 12 8zM12 8s1.5-5 4-3.5S14.5 8 12 8z"/></svg>',
+    "calendar": '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+    "chat": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg>',
+    "plus": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
     "steth": '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="11" r="2"/></svg>',
 }
 
@@ -76,7 +88,8 @@ def header(nav):
     def cur(k):
         return ' aria-current="page"' if nav == k else ""
     shop_menu = "".join(menu_item(k) for k in C.SINGLES) + "<li><hr></li>" + "".join(menu_item(k) for k in C.BUNDLES) + \
-        '<li><hr></li><li><a href="/shop.html"><span>Shop all<small>Every product, bundle and saving</small></span></a></li>'
+        '<li><hr></li><li><a href="/shop.html#goals"><span>Shop by health goal<small>Energy, mood, hair and skin and more</small></span></a></li>' + \
+        '<li><a href="/shop.html"><span>Shop all<small>Every product, bundle and saving</small></span></a></li>'
     announce = f'<div class="announce">{ANNOUNCE}</div>\n' if ANNOUNCE else ""
     return f'''<a class="skip-link" href="#main">Skip to content</a>
 {announce}<header class="site">
@@ -85,8 +98,8 @@ def header(nav):
     <ul class="nav-links" id="nav-links">
       <li class="has-menu"><button type="button" class="drop" aria-expanded="false" aria-controls="menu-shop">Shop</button>
         <ul class="menu" id="menu-shop">{shop_menu}</ul></li>
+      <li><a href="/quiz.html"{cur("quiz")}>Take the quiz</a></li>
       <li><a href="/about.html"{cur("about")}>Our story</a></li>
-      <li><a href="/about.html#hazel"{cur("hazel")}>Meet Hazel</a></li>
       <li><a href="/blog.html"{cur("blog")}>Journal</a></li>
       <li><a href="/help.html"{cur("help")}>Help</a></li>
     </ul>
@@ -243,16 +256,30 @@ def price_slot(key):
 
 def product_card(key, lazy=True):
     p = C.PRODUCTS[key]
-    return f'''<a class="card reveal" href="/{p["file"]}" data-acc="{p["acc"]}">
-  <span class="badge soft" data-badge-slug="{p["packs"][0][0]}" hidden></span>
-  <div class="card-media"><img src="{img(p["image"], 640, 640)}" alt="{e(p["alt"])}" width="640" height="640"{' loading="lazy"' if lazy else ''}></div>
-  <div class="card-body">
-    <span class="stage">{e(p["stage"])}</span>
-    <h3>{e(p.get("short", p["name"]))}</h3>
-    <p>{e(p["card"])}</p>
-    <div class="card-foot">{price_slot(key)}<span class="card-cta">View</span></div>
-  </div>
-</a>'''
+    name = p.get("short", p["name"])
+    badges = "".join(f'<span class="badge soft">{e(x)}</span>' for x in p.get("badges", []))
+    ticks = "".join(f"<li>{e(t)}</li>" for t in p.get("benefits", []))
+    return f'''<article class="card reveal" data-acc="{p["acc"]}" data-goals="{" ".join(p.get("goals", []))}">
+  <a class="card-link" href="/{p["file"]}">
+    <div class="card-media">
+      <span class="badges"><span class="badge" data-badge-slug="{p["packs"][0][0]}" hidden></span>{badges}</span>
+      <img src="{img(p["image"], 640, 640)}" alt="{e(p["alt"])}" width="640" height="640"{' loading="lazy"' if lazy else ''}>
+    </div>
+    <div class="card-body">
+      <span class="stage">{e(p["stage"])}</span>
+      <h3>{e(name)}</h3>
+      <ul class="card-ticks">{ticks}</ul>
+    </div>
+  </a>
+  <div class="card-foot">{price_slot(key)}<button type="button" class="quick-add" data-quick-add="{p["packs"][0][0]}" aria-label="Add {e(name)} to basket">{ICONS["bag"]}<span>Add</span></button></div>
+</article>'''
+
+
+def goal_tiles(href_prefix="/shop.html?goal="):
+    icon = {"energy": "bolt", "mood": "mind", "hair-skin": "sparkle", "bones": "bone", "immunity": "shield",
+            "perimenopause": "moon", "menopause": "flower", "post": "sun"}
+    return "".join(f'<li><a href="{href_prefix}{k}#products">{ICONS[icon[k]]}<strong>{e(label)}</strong><span>{e(sub)}</span></a></li>'
+                   for k, label, sub in C.GOALS)
 
 
 def faq_html(items):
@@ -274,9 +301,14 @@ def fragments():
         "team": "\n".join(f'<li class="reveal"><span class="role">{e(r)}</span><h3>{e(n)}</h3><p>{e(t)}</p></li>' for r, n, t in C.TEAM),
         "posts_fallback": posts_html(json.loads((ROOT / "data" / C.POSTS_FILE).read_text())),
         "posts_latest": posts_html(json.loads((ROOT / "data" / C.POSTS_FILE).read_text())[:3]),
+        "goal_tiles": goal_tiles(),
+        "why_subscribe": why_subscribe(),
+        "quiz_data": json.dumps({k: {"name": v.get("short", v["name"]), "file": v["file"], "image": img(v["image"], 640, 640),
+                                     "acc": v["acc"], "stage": v["stage"], "card": v["card"], "benefits": v.get("benefits", []),
+                                     "slug": v["packs"][0][0]} for k, v in C.PRODUCTS.items()}, ensure_ascii=False).replace("</", "<\\/"),
         "email": EMAIL, "phone": PHONE, "phone_tel": PHONE_TEL,
         "icon_leaf": ICONS["leaf"], "icon_flag": ICONS["flag"], "icon_shield": ICONS["shield"], "icon_heart": ICONS["heart"],
-        "icon_truck": ICONS["truck"], "icon_repeat": ICONS["repeat"], "icon_steth": ICONS["steth"],
+        "icon_truck": ICONS["truck"], "icon_repeat": ICONS["repeat"], "icon_steth": ICONS["steth"], "icon_quiz": ICONS["quiz"], "icon_gift": ICONS["gift"], "icon_calendar": ICONS["calendar"], "icon_chat": ICONS["chat"],
     }
 
 
@@ -295,46 +327,93 @@ def posts_html(posts):
 
 # ---------- product pages ----------
 
+def faqs_for(key):
+    p = C.PRODUCTS[key]
+    faqs = list(p.get("faqs", []))
+    if p.get("how") and not any(q.lower().startswith("how") for q, _ in faqs):
+        faqs.insert(0, ("How do I take it?", [p["how"]]))
+    if key in C.BUNDLES:
+        faqs = [
+            ("How do I take the bundle?", ["Take each product as directed on its own label. " + " ".join(f'{C.PRODUCTS[k]["name"]}: {C.PRODUCTS[k]["how"]}' for k in p["includes"])]),
+            ("What is the free gift?", ["Your first order with us includes a complimentary supplement, chosen to help you explore more of the range."]),
+            ("Can I subscribe?", ["Yes. Choose Subscribe & save for a further 5% off, delivered every 1, 3 or 6 months depending on the supply you pick. There's no minimum term."]),
+        ]
+    faqs.append(("Is this a medicine?", [C.FOOD_SUPPLEMENT]))
+    return faqs
+
+
+def accordions(key):
+    """The collapsible sections beside the buy box: why, how, what's inside, FAQs, delivery."""
+    p = C.PRODUCTS[key]
+    items = []
+    if key in C.BUNDLES:
+        why = "".join(f"<p>{e(t)}</p>" for t in p["intro"])
+        inside = "<ul>" + "".join(f'<li><a class="textlink" href="/{C.PRODUCTS[k]["file"]}">{e(C.PRODUCTS[k]["name"])}</a>: {e(p["includes_notes"][k])}</li>' for k in p["includes"]) + "</ul>"
+        how = "<ul>" + "".join(f'<li>{e(C.PRODUCTS[k]["name"])}: {e(C.PRODUCTS[k]["how"])}</li>' for k in p["includes"]) + "</ul>"
+    elif p.get("simple"):
+        why = "".join(f"<p>{e(t)}</p>" for t in p["intro"])
+        inside = "<p>50mg of elemental iron in a vegetable cellulose capsule.</p>"
+        how = f"<p>{e(p['how'])}</p>"
+    else:
+        why = "".join(f"<p>{e(t)}</p>" for t in p["intro"][1:]) + "<ul>" + "".join(f"<li><strong>{e(t)}.</strong> {e(d)}</li>" for t, d in p["why"]) + "</ul>"
+        inside = "<ul>" + "".join(f"<li><strong>{e(n)}</strong>: {e(r)}</li>" for n, r, _ in p["ingredients"]) + '</ul><p><a class="textlink" href="#formula">See the full formula and claims</a></p>'
+        how = f"<p>{e(p['how'])}</p>"
+    items.append(("Why take it", why, True))
+    items.append(("How to take", how + f"<p class=\"hint\">{e(C.FOOD_SUPPLEMENT)}</p>", False))
+    items.append(("What's inside", inside, False))
+    items.append(("FAQs", "".join(f"<p><strong>{e(q)}</strong><br>{' '.join(e(x) for x in a)}</p>" for q, a in faqs_for(key)[:-1]), False))
+    items.append(("Delivery &amp; returns", '<p>We deliver to the UK and Jersey. Delivery costs are shown at checkout, before you pay.</p><p>You can cancel up to the end of the seventh working day after your goods arrive, and return unopened, sealed tubs for a refund. <a class="textlink" href="/help.html#delivery">Delivery and returns</a></p>', False))
+    return '<div class="acc-list">' + "".join(
+        f'<details class="acc"{" open" if op else ""}><summary>{t}</summary><div class="acc-body prose">{b}</div></details>' for t, b, op in items) + "</div>"
+
+
 def buy_section(key):
     p = C.PRODUCTS[key]
+    name = p.get("short", p["name"])
     packs = json.dumps([{"slug": s, "label": l, "note": n} for s, l, n in p["packs"]])
     thumbs = ""
     if len(p["gallery"]) > 1:
         thumbs = '<ul class="thumbs">' + "".join(
             f'<li><button type="button" data-thumb="{img(g, 1000, 1000)}" aria-pressed="{str(i == 0).lower()}" aria-label="Show image {i + 1}"><img src="{img(g, 160, 160)}" alt="" width="74" height="74" loading="lazy"></button></li>'
             for i, g in enumerate(p["gallery"])) + "</ul>"
-    chips = "".join(f"<li>{e(c)}</li>" for c in p["chips"])
+    badges = "".join(f'<span class="badge soft">{e(x)}</span>' for x in p.get("badges", []))
+    ticks = "".join(f"<li>{e(t)}</li>" for t in p.get("benefits", []))
     unit = "bundle" if key in C.BUNDLES else "tub"
-    ext = ""
-    if p.get("external"):
-        ext = f'<p class="hint" style="margin-top:14px"><a class="textlink arrow" href="{p["external"][1]}" target="_blank" rel="noopener">{e(p["external"][0])}</a></p>'
     return f'''<section class="product-top" data-acc="{p["acc"]}">
   <div class="wrap">
-    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/shop.html">Shop</a><span aria-hidden="true">/</span>{e(p.get("short", p["name"]))}</nav>
+    <nav class="crumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/shop.html">Shop</a><span aria-hidden="true">/</span>{e(name)}</nav>
     <div class="shop-grid" style="margin-top:22px">
       <div class="gallery">
-        <div class="gallery-main"><img id="shop-img" src="{img(p["gallery"][0], 1000, 1000)}" alt="{e(p["alt"])}" width="1000" height="1000" fetchpriority="high"></div>
+        <div class="gallery-main"><span class="badges">{badges}</span><img id="shop-img" src="{img(p["gallery"][0], 1000, 1000)}" alt="{e(p["alt"])}" width="1000" height="1000" fetchpriority="high"></div>
         {thumbs}
       </div>
       <div class="shop-info">
         <span class="stage acc-bar">{e(p["stage"])}</span>
         <h1>{e(p["name"])}</h1>
         <p class="tagline">{e(p["tagline"])}</p>
-        <p class="lead">{e(p["intro"][0])}</p>
-        <ul class="facts-mini">{chips}</ul>
-        <div id="buy-panel" class="buy-panel" data-packs='{e(packs)}' data-name="{e(p.get("short", p["name"]))}" data-unit="{unit}" aria-live="polite">
+        <ul class="pdp-ticks">{ticks}</ul>
+        <p class="pdp-intro">{e(p["intro"][0])}</p>
+        <div id="buy-panel" class="buy-panel" data-packs='{e(packs)}' data-name="{e(name)}" data-unit="{unit}" aria-live="polite">
           <div class="skeleton"></div><div class="skeleton short"></div>
         </div>
-        <ul class="buy-notes">
-          <li>{ICONS["repeat"]}Subscribe &amp; save 5% on top of multi-buy savings. Cancel any time.</li>
-          <li>{ICONS["truck"]}Delivery to the UK and Jersey. Costs are shown at checkout.</li>
-          <li>{ICONS["flag"]}Made in the UK, in biodegradable packaging.</li>
+        <ul class="promise">
+          <li>{ICONS["steth"]}<span><strong>Clinically led</strong>Formulated by a Consultant Nurse</span></li>
+          <li>{ICONS["flag"]}<span><strong>Made in the UK</strong>In biodegradable packaging</span></li>
         </ul>
-        {ext}
+        {accordions(key)}
+        <p class="footnote">{e(C.CLAIMS_NOTE)}</p>
       </div>
     </div>
   </div>
-</section>'''
+</section>
+<div class="sticky-buy" id="sticky-buy" hidden>
+  <div class="wrap sticky-inner">
+    <img src="{img(p["image"], 96, 96)}" alt="" width="48" height="48">
+    <div class="sticky-name"><strong>{e(name)}</strong><span data-sticky-note></span></div>
+    <span class="sticky-price" data-sticky-price></span>
+    <button type="button" class="btn" data-sticky-add>Add to basket</button>
+  </div>
+</div>'''
 
 
 def product_page(key):
@@ -351,14 +430,7 @@ def product_page(key):
   </div>
 </section>''')
     elif not p.get("simple"):
-        why = "".join(f"<li><strong>{e(t)}.</strong> {e(d)}</li>" for t, d in p["why"])
-        parts.append(f'''<section class="alt" data-acc="{p["acc"]}">
-  <div class="wrap why-grid">
-    <div class="reveal"><span class="eyebrow">About {e(name)}</span><h2>Why choose {e(name)}?</h2><div class="prose" style="margin-top:16px">{"".join(f"<p>{e(t)}</p>" for t in p["intro"][1:])}</div></div>
-    <ul class="ticks reveal">{why}</ul>
-  </div>
-</section>
-<section data-acc="{p["acc"]}">
+        parts.append(f'''<section data-acc="{p["acc"]}">
   <div class="wrap">
     <figure class="note reveal">
       <span class="eyebrow">A note from Hazel</span>
@@ -368,17 +440,15 @@ def product_page(key):
   </div>
 </section>''')
         ings = "".join(f'<article class="ingredient reveal"><h3>{e(n)}</h3><p class="role">{e(r)}</p><ul>{"".join(f"<li>{e(c)}</li>" for c in cl)}</ul></article>' for n, r, cl in p["ingredients"])
-        more = f'<p style="margin-top:24px"><a class="textlink arrow" href="{p["external"][1]}" target="_blank" rel="noopener">The full Perform label at performformen.co.uk</a></p>' if p.get("external") else ""
         parts.append(f'''<section class="alt" id="formula" data-acc="{p["acc"]}">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">The formula</span><h2>What's inside {e(name)}</h2><p class="lead">{e(p["formula_intro"])}</p></div>
+    <div class="section-head reveal"><span class="eyebrow">Ingredients explained</span><h2>What's inside {e(name)}</h2><p class="lead">{e(p["formula_intro"])}</p></div>
     <div class="formula-grid">{ings}</div>
     <p class="footnote">{e(C.CLAIMS_NOTE)}</p>
-    {more}
   </div>
 </section>''')
-    else:
-        parts.append(f'''<section class="alt"><div class="wrap narrow prose reveal">{"".join(f"<p>{e(t)}</p>" for t in p["intro"][1:])}</div></section>''')
+
+    parts.append(why_subscribe())
 
     if p.get("review"):
         txt, by = p["review"]
@@ -387,41 +457,25 @@ def product_page(key):
   <p style="margin-top:22px"><a class="textlink arrow" href="https://www.trustpilot.com/review/www.menopausebyhazel.com" target="_blank" rel="noopener">Read our Trustpilot reviews</a></p></div>
 </section>''')
 
-    faqs = list(p.get("faqs", []))
-    if p.get("how") and not any(q.lower().startswith("how") for q, _ in faqs):
-        faqs.insert(0, ("How do I take it?", [p["how"]]))
-    if key in C.BUNDLES:
-        faqs = [
-            ("How do I take the bundle?", ["Take each product as directed on its own label. " + " ".join(f'{C.PRODUCTS[k]["name"]}: {C.PRODUCTS[k]["how"]}' for k in p["includes"])]),
-            ("What is the free gift?", ["Your first order with us includes a complimentary supplement, chosen to help you explore more of the range."]),
-            ("Can I subscribe?", ["Yes. Choose Subscribe & save above for a further 5% off, delivered every 1, 3 or 6 months depending on the supply you pick. There's no minimum term."]),
-        ]
-    faqs.append(("Is this a medicine?", [C.FOOD_SUPPLEMENT]))
-    parts.append(f'''<section id="faqs">
-  <div class="wrap faq-grid">
-    <div class="reveal"><span class="eyebrow">Questions</span><h2>{e(name)} FAQs</h2><p class="lead" style="margin-top:12px">Anything else? Email <a class="textlink" href="mailto:{EMAIL}">{EMAIL}</a> or call {PHONE}.</p></div>
-    <div class="reveal">{faq_html(faqs)}</div>
+    rel = "\n".join(product_card(k) for k in p["related"])
+    parts.append(f'''<section class="alt">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">Expertly paired</span><h2>Works well with</h2></div>
+    <div class="product-grid">{rel}</div>
   </div>
 </section>''')
 
     if p.get("blog"):
         post = next((x for x in json.loads((ROOT / "data" / C.POSTS_FILE).read_text()) if x["slug"] == p["blog"]), None)
         if post:
-            parts.append(f'''<section class="alt">
+            parts.append(f'''<section>
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">From the journal</span><h2>Read more about {e(name)}</h2></div>
-    <ul class="post-grid" style="grid-template-columns:minmax(0,1fr)"><li><a class="post-feature" href="/post.html?slug={post["slug"]}" style="margin:0"><img src="{img(post["image"], 900, 560)}" alt="" width="900" height="560" loading="lazy"><div><span class="post-meta">{fmt_date(post["date"])} · {post["minutes"]} min read</span><h3 style="font-size:1.6rem">{e(post["title"])}</h3><p class="hint">{e(post["excerpt"])}</p><span class="card-cta">Read the article</span></div></a></li></ul>
+    <a class="post-feature reveal" href="/post.html?slug={post["slug"]}" style="margin:0"><img src="{img(post["image"], 900, 560)}" alt="" width="900" height="560" loading="lazy"><div><span class="post-meta">{fmt_date(post["date"])} · {post["minutes"]} min read</span><h3 style="font-size:1.6rem">{e(post["title"])}</h3><p class="hint">{e(post["excerpt"])}</p><span class="card-cta">Read the article</span></div></a>
   </div>
 </section>''')
 
-    rel = "\n".join(product_card(k) for k in p["related"])
-    parts.append(f'''<section>
-  <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">You might also like</span><h2>More from the range</h2></div>
-    <div class="product-grid">{rel}</div>
-  </div>
-</section>''')
-
+    faqs = faqs_for(key)
     ld = [{
         "@context": "https://schema.org", "@type": "Product", "name": p["name"], "description": p["description"],
         "image": [img(g, 1200, 1200) for g in p["gallery"]], "brand": {"@type": "Brand", "name": "Supplements by Hazel"},
@@ -440,47 +494,56 @@ def product_page(key):
     return page(meta, "\n\n".join(parts))
 
 
+def why_subscribe():
+    return f'''<section class="why-sub">
+  <div class="wrap">
+    <div class="section-head reveal" style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;max-width:none">
+      <div style="max-width:620px"><span class="eyebrow">Subscribe &amp; save</span><h2>Why subscribe?</h2><p class="lead">Never run out. Your supplements arrive on your schedule, for less.</p></div>
+      <a class="btn" href="/shop.html">Find your formula</a>
+    </div>
+    <ul class="sub-tiles">
+      <li class="reveal"><span class="big">5%<small>off</small></span><strong>Every delivery</strong><span>On top of our 10% and 15% multi-buy savings</span></li>
+      <li class="reveal">{ICONS["calendar"]}<strong>On your schedule</strong><span>Delivered monthly, every 3 months or every 6 months</span></li>
+      <li class="reveal">{ICONS["repeat"]}<strong>No minimum term</strong><span>Change or cancel any time from your account or by email</span></li>
+      <li class="reveal">{ICONS["gift"]}<strong>Free gift with bundles</strong><span>Your first bundle order includes a complimentary supplement</span></li>
+    </ul>
+  </div>
+</section>'''
+
+
 def shop_page():
+    f = fragments()
+    chips = '<a class="chip" href="/shop.html#products" data-goal="">All</a>' + "".join(
+        f'<a class="chip" href="/shop.html?goal={k}#products" data-goal="{k}">{e(label)}</a>' for k, label, _ in C.GOALS)
     body = f'''<section class="page-head">
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb" style="padding-top:0;margin-bottom:22px"><a href="/">Home</a><span aria-hidden="true">/</span>Shop</nav>
     <h1>Shop the range</h1>
     <p class="lead">Every formula is created by Hazel Hayden and made in the UK. Save 10% on 3 tubs, 15% on 6, and a further 5% when you subscribe.</p>
+    <div class="actions" style="margin-top:22px"><a class="btn line" href="/quiz.html">{ICONS["quiz"]} Not sure? Take the quiz</a></div>
   </div>
 </section>
-<section style="padding-top:0">
+<section id="goals" class="goal-band">
   <div class="wrap">
-    <div class="section-head"><h2 style="font-size:1.9rem">Our formulas</h2></div>
-    <div class="product-grid">{fragments()["products_singles"]}</div>
+    <h2>Shop by health goal</h2>
+    <ul class="goal-tiles">{f["goal_tiles"]}</ul>
   </div>
 </section>
-<section class="alt">
+<section id="products" style="scroll-margin-top:90px">
   <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Bundles</span><h2 style="font-size:1.9rem">Three formulas, one routine</h2><p class="lead">Each bundle includes a free gift with your first order.</p></div>
-    <div class="product-grid three">{fragments()["products_bundles"]}</div>
+    <div class="chips" role="navigation" aria-label="Filter by health goal">{chips}</div>
+    <p class="hint" data-goal-note hidden></p>
+    <div class="product-grid" data-filterable>{f["products_singles"]}
+{f["products_bundles"]}
+{f["products_extras"]}</div>
   </div>
 </section>
-<section>
-  <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Essentials</span><h2 style="font-size:1.9rem">Also in the shop</h2></div>
-    <div class="product-grid">{fragments()["products_extras"]}</div>
-  </div>
-</section>
-<section class="alt">
-  <div class="wrap">
-    <div class="values">
-      <div>{ICONS["flag"]}<h3>Made in the UK</h3><p>Every product is made in the UK, in biodegradable packaging.</p></div>
-      <div>{ICONS["steth"]}<h3>Clinically led</h3><p>Formulated by a Consultant Nurse with 38 years in the NHS.</p></div>
-      <div>{ICONS["leaf"]}<h3>Nothing unnecessary</h3><p>No fillers or bulking agents. Every ingredient has a purpose.</p></div>
-      <div>{ICONS["repeat"]}<h3>Subscribe &amp; save</h3><p>A further 5% off, delivered on your schedule. Cancel any time.</p></div>
-    </div>
-  </div>
-</section>'''
+{why_subscribe()}'''
     items = [C.PRODUCTS[k] for k in C.SINGLES + C.BUNDLES + C.EXTRAS]
     ld = [{"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "url": f'{SITE}/{p["file"]}', "name": p["name"]} for i, p in enumerate(items)]}]
     meta = {"path": "shop.html", "title": "Shop | Supplements by Hazel", "nav": "shop", "ld": ld,
-            "description": "Shop Clarity, Peri, Rosy and Hair & Skin, plus the Wellbeing and Hormone Health bundles. Formulated by Hazel Hayden, made in the UK. Save on 3 and 6 tubs."}
+            "description": "Shop Clarity, Peri, Rosy and Hair & Skin, plus the Wellbeing and Hormone Health bundles, by life stage or health goal. Formulated by Hazel Hayden, made in the UK."}
     return page(meta, body)
 
 
