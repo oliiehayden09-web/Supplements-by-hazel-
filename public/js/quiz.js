@@ -49,12 +49,12 @@ function recommend() {
 }
 
 const reason = {
-  peri: "Peri is made for the years before midlife, with ashwagandha, saffron and biotin to help maintain healthy hair, skin and energy.*",
-  clarity: "Clarity is our everyday midlife formula: magnesium, vitamin D, B12 and live cultures for energy, mood and bones.*",
-  rosy: "Rosy is made for life after the menopause: vitamins C and D3 with L-theanine and carotenoids, taken in the evening.*",
-  "hair-skin": "Hair & Skin adds vitamin C, biotin, zinc and marine collagen for hair, skin and nails.*",
-  wellbeing: "The Wellbeing Bundle brings Clarity, Peri and Hair & Skin together, with a free gift on your first order.",
-  hormone: "The Hormone Health Bundle brings Clarity, Rosy and Hair & Skin together, with a free gift on your first order.",
+  peri: "Peri is for the years before the menopause. It has ashwagandha and saffron, and biotin to help maintain normal skin and hair.*",
+  clarity: "Clarity is for during the menopause. Its magnesium, vitamin D and B12 help with tiredness, psychological function and bones.*",
+  rosy: "Rosy is for after the menopause: vitamins C and D3 with L-theanine and carotenoids, taken in the evening.*",
+  "hair-skin": "Hair & Skin adds biotin and zinc, which help maintain normal hair, skin and nails, plus vitamin C and marine collagen.*",
+  wellbeing: "The Wellbeing Bundle is Clarity, Peri and Hair & Skin in one order, with a free gift the first time.",
+  hormone: "The Hormone Health Bundle is Clarity, Rosy and Hair & Skin in one order, with a free gift the first time.",
 };
 
 function card(key, label) {

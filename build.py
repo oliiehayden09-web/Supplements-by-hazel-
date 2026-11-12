@@ -30,7 +30,7 @@ PHONE = "0117 462 3935"
 PHONE_TEL = "+441174623935"
 
 # The thin bar above the header. Change it for each promotion, or set it to "" to hide it.
-ANNOUNCE = '<strong>50% off Rosy</strong>, taken off in your basket'
+ANNOUNCE = 'Free delivery on every order · <strong>50% off Rosy</strong>, taken off in your basket'
 
 e = html.escape
 W = "https://static.wixstatic.com/media/"
@@ -88,8 +88,8 @@ def header(nav):
     def cur(k):
         return ' aria-current="page"' if nav == k else ""
     shop_menu = "".join(menu_item(k) for k in C.SINGLES) + "<li><hr></li>" + "".join(menu_item(k) for k in C.BUNDLES) + \
-        '<li><hr></li><li><a href="/shop.html#goals"><span>Shop by health goal<small>Energy, mood, hair and skin and more</small></span></a></li>' + \
-        '<li><a href="/shop.html"><span>Shop all<small>Every product, bundle and saving</small></span></a></li>'
+        '<li><hr></li><li><a href="/shop.html#goals"><span>Shop by health goal<small>Energy, mood, hair and skin, bones</small></span></a></li>' + \
+        '<li><a href="/shop.html"><span>Shop all<small>All products and bundles</small></span></a></li>'
     announce = f'<div class="announce">{ANNOUNCE}</div>\n' if ANNOUNCE else ""
     return f'''<a class="skip-link" href="#main">Skip to content</a>
 {announce}<header class="site">
@@ -119,7 +119,7 @@ def footer():
   <div class="wrap nl-grid">
     <div class="nl-copy">
       <h2 id="nl-title">Join our mailing list</h2>
-      <p>Offers, new products and Hazel's latest articles on midlife health and nutrition. Unsubscribe at any time.</p>
+      <p>Offers, new products and Hazel's latest articles. Unsubscribe at any time.</p>
       <p class="nl-note">We use your details as set out in our <a href="/privacy.html">Privacy Policy</a>.</p>
     </div>
     <div id="newsletter-form" class="nl-form"></div>
@@ -132,7 +132,7 @@ def footer():
       <div>
         <img src="/assets/wordmark-cream.png" alt="Supplements by Hazel" width="187" height="38" loading="lazy">
         <p>Food supplements formulated by Hazel Hayden, Consultant Nurse and British Menopause Society Registered Specialist. Made in the UK.</p>
-        <ul class="foot-badges"><li>Made in the UK</li><li>Biodegradable packaging</li><li>No unnecessary fillers</li></ul>
+        <ul class="foot-badges"><li>Free delivery</li><li>30-day money-back guarantee</li><li>Made in the UK</li><li>Biodegradable packaging</li></ul>
         <ul class="socials" aria-label="Supplements by Hazel on social media">{socials}</ul>
       </div>
       <div>
@@ -362,7 +362,7 @@ def accordions(key):
     items.append(("How to take", how + f"<p class=\"hint\">{e(C.FOOD_SUPPLEMENT)}</p>", False))
     items.append(("What's inside", inside, False))
     items.append(("FAQs", "".join(f"<p><strong>{e(q)}</strong><br>{' '.join(e(x) for x in a)}</p>" for q, a in faqs_for(key)[:-1]), False))
-    items.append(("Delivery &amp; returns", '<p>We deliver to the UK and Jersey. Delivery costs are shown at checkout, before you pay.</p><p>You can cancel up to the end of the seventh working day after your goods arrive, and return unopened, sealed tubs for a refund. <a class="textlink" href="/help.html#delivery">Delivery and returns</a></p>', False))
+    items.append(("Delivery &amp; returns", '<p>Delivery is free on every order to the UK and Jersey.</p><p>If you\'re not happy, contact us within 30 days of delivery and we\'ll give you your money back. <a class="textlink" href="/help.html#delivery">Delivery and returns</a></p>', False))
     return '<div class="acc-list">' + "".join(
         f'<details class="acc"{" open" if op else ""}><summary>{t}</summary><div class="acc-body prose">{b}</div></details>' for t, b, op in items) + "</div>"
 
@@ -397,8 +397,8 @@ def buy_section(key):
           <div class="skeleton"></div><div class="skeleton short"></div>
         </div>
         <ul class="promise">
-          <li>{ICONS["steth"]}<span><strong>Clinically led</strong>Formulated by a Consultant Nurse</span></li>
-          <li>{ICONS["flag"]}<span><strong>Made in the UK</strong>In biodegradable packaging</span></li>
+          <li>{ICONS["truck"]}<span><strong>Free delivery</strong>On every order, no minimum</span></li>
+          <li>{ICONS["shield"]}<span><strong>30-day guarantee</strong>Not happy? Get your money back</span></li>
         </ul>
         {accordions(key)}
         <p class="footnote">{e(C.CLAIMS_NOTE)}</p>
@@ -425,7 +425,7 @@ def product_page(key):
         items = "".join(f'''<li data-acc="{C.PRODUCTS[k]["acc"]}"><img src="{img(C.PRODUCTS[k]["image"], 128, 128)}" alt="" width="64" height="64" loading="lazy"><div><strong><a class="textlink" href="/{C.PRODUCTS[k]["file"]}">{e(C.PRODUCTS[k]["name"])}</a></strong><span>{e(p["includes_notes"][k])}</span></div></li>''' for k in p["includes"])
         parts.append(f'''<section class="alt">
   <div class="wrap why-grid">
-    <div class="reveal"><span class="eyebrow">What's in the bundle</span><h2>Three formulas, one routine</h2><div class="prose" style="margin-top:16px">{"".join(f"<p>{e(t)}</p>" for t in p["intro"])}</div></div>
+    <div class="reveal"><span class="eyebrow">What's in the bundle</span><h2>Three products in one order</h2><div class="prose" style="margin-top:16px">{"".join(f"<p>{e(t)}</p>" for t in p["intro"])}</div></div>
     <ul class="bundle-list reveal">{items}</ul>
   </div>
 </section>''')
@@ -442,7 +442,7 @@ def product_page(key):
         ings = "".join(f'<article class="ingredient reveal"><h3>{e(n)}</h3><p class="role">{e(r)}</p><ul>{"".join(f"<li>{e(c)}</li>" for c in cl)}</ul></article>' for n, r, cl in p["ingredients"])
         parts.append(f'''<section class="alt" id="formula" data-acc="{p["acc"]}">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Ingredients explained</span><h2>What's inside {e(name)}</h2><p class="lead">{e(p["formula_intro"])}</p></div>
+    <div class="section-head reveal"><span class="eyebrow">Ingredients</span><h2>What's inside {e(name)}</h2><p class="lead">{e(p["formula_intro"])}</p></div>
     <div class="formula-grid">{ings}</div>
     <p class="footnote">{e(C.CLAIMS_NOTE)}</p>
   </div>
@@ -460,7 +460,7 @@ def product_page(key):
     rel = "\n".join(product_card(k) for k in p["related"])
     parts.append(f'''<section class="alt">
   <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Expertly paired</span><h2>Works well with</h2></div>
+    <div class="section-head reveal"><span class="eyebrow">Also in the range</span><h2>Works well with</h2></div>
     <div class="product-grid">{rel}</div>
   </div>
 </section>''')
@@ -498,14 +498,14 @@ def why_subscribe():
     return f'''<section class="why-sub">
   <div class="wrap">
     <div class="section-head reveal" style="display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;max-width:none">
-      <div style="max-width:620px"><span class="eyebrow">Subscribe &amp; save</span><h2>Why subscribe?</h2><p class="lead">Never run out. Your supplements arrive on your schedule, for less.</p></div>
+      <div style="max-width:620px"><span class="eyebrow">Subscribe &amp; save</span><h2>Why subscribe?</h2><p class="lead">Your supplements arrive when you need them, for less.</p></div>
       <a class="btn" href="/shop.html">Find your formula</a>
     </div>
     <ul class="sub-tiles">
-      <li class="reveal"><span class="big">5%<small>off</small></span><strong>Every delivery</strong><span>On top of our 10% and 15% multi-buy savings</span></li>
-      <li class="reveal">{ICONS["calendar"]}<strong>On your schedule</strong><span>Delivered monthly, every 3 months or every 6 months</span></li>
-      <li class="reveal">{ICONS["repeat"]}<strong>No minimum term</strong><span>Change or cancel any time from your account or by email</span></li>
-      <li class="reveal">{ICONS["gift"]}<strong>Free gift with bundles</strong><span>Your first bundle order includes a complimentary supplement</span></li>
+      <li class="reveal"><span class="big">5%<small>off</small></span><strong>Off every delivery</strong><span>On top of the 10% and 15% multi-buy savings</span></li>
+      <li class="reveal">{ICONS["calendar"]}<strong>Free delivery</strong><span>Monthly, every 3 months or every 6 months</span></li>
+      <li class="reveal">{ICONS["repeat"]}<strong>No minimum term</strong><span>Change or cancel by email or phone</span></li>
+      <li class="reveal">{ICONS["gift"]}<strong>Free gift with bundles</strong><span>Your first bundle order comes with a free supplement</span></li>
     </ul>
   </div>
 </section>'''
@@ -519,7 +519,7 @@ def shop_page():
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb" style="padding-top:0;margin-bottom:22px"><a href="/">Home</a><span aria-hidden="true">/</span>Shop</nav>
     <h1>Shop the range</h1>
-    <p class="lead">Every formula is created by Hazel Hayden and made in the UK. Save 10% on 3 tubs, 15% on 6, and a further 5% when you subscribe.</p>
+    <p class="lead">Every formula is made in the UK to Hazel Hayden\'s recipe. Save 10% on 3 tubs and 15% on 6, plus 5% when you subscribe. Delivery is free.</p>
     <div class="actions" style="margin-top:22px"><a class="btn line" href="/quiz.html">{ICONS["quiz"]} Not sure? Take the quiz</a></div>
   </div>
 </section>

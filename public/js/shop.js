@@ -140,7 +140,7 @@ if (buy) {
           ${sub ? `<span class="bt-perks"><span>How subscriptions work</span>
             <span>${esc(savePct(plan))}% off every delivery${active > 0 ? `, on top of the ${esc((pk.note || "").replace(/^save\s*/i, "").toLowerCase())} multi-buy saving` : ""}</span>
             <span>${esc(pk.label)} delivered ${esc(every(plan))}</span>
-            <span>No minimum term: change or cancel any time</span></span>` : ""}
+            <span>Free delivery, and no minimum term</span></span>` : ""}
         </button>
         <button type="button" class="buy-type${!sub ? " on" : ""}" role="radio" aria-checked="${!sub}" data-buytype="once">
           <span class="bt-row"><span class="bt-dot"></span><span class="choice-name">One-time purchase</span><span class="bt-price">${esc(s.variant?.price || p.price)}</span></span>
@@ -261,7 +261,7 @@ function renderCart() {
   for (const f of cart.fees ?? []) rows.push(`<div class="sum"><span>${esc(f.name)}</span><span>${esc(f.amount)}</span></div>`);
   if (!cart.pricesIncludeTax) for (const t of cart.taxes ?? []) rows.push(`<div class="sum"><span>${esc(t.name)}</span><span>${esc(t.amount)}</span></div>`);
   if (cart.total) rows.push(`<div class="sum total"><span>Total</span><span>${esc(cart.total)}</span></div>`);
-  $("#cart-sums").innerHTML = rows.join("") + `<p class="sum-note">Delivery to the UK and Jersey is added at checkout.</p>`;
+  $("#cart-sums").innerHTML = rows.join("") + `<p class="sum-note">Free delivery to the UK and Jersey. 30-day money-back guarantee.</p>`;
   $("#cart-checkout").disabled = busy;
   $("#cart-foot").hidden = false;
 }
