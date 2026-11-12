@@ -165,6 +165,7 @@ def footer():
       </div>
     </div>
     <p class="legal">Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle. They are not medicines and are not intended to diagnose, treat, cure or prevent any condition. If you are pregnant, breastfeeding, taking medication or have a medical condition, speak to a healthcare professional before use.<br><a href="/terms.html">Terms &amp; Conditions</a> · <a href="/privacy.html">Privacy Policy</a> · <a href="/cookies.html">Cookie Policy</a><br>© {date.today().year} Supplements by Hazel Limited. Registered in England and Wales, company number 13478359. Registered office: 4 King Square, Bridgwater, Somerset, TA6 3YF, United Kingdom.</p>
+    <img class="foot-giant" src="/assets/wordmark-cream.png" alt="" width="900" height="183">
   </div>
 </footer>
 
@@ -302,6 +303,11 @@ def fragments():
         "posts_fallback": posts_html(json.loads((ROOT / "data" / C.POSTS_FILE).read_text())),
         "posts_latest": posts_html(json.loads((ROOT / "data" / C.POSTS_FILE).read_text())[:3]),
         "goal_tiles": goal_tiles(),
+        "hero_fan": "".join(
+            f'<a class="fan-card" href="/{C.PRODUCTS[k]["file"]}" data-acc="{C.PRODUCTS[k]["acc"]}" style="--i:{i}">'
+            f'<img src="{img(C.PRODUCTS[k]["image"], 520, 520)}" alt="{e(C.PRODUCTS[k]["alt"])}" width="520" height="520">'
+            f'<span><strong>{e(C.PRODUCTS[k]["name"])}</strong>{e(C.PRODUCTS[k]["stage"])}</span></a>'
+            for i, k in enumerate(C.SINGLES)),
         "why_subscribe": why_subscribe(),
         "quiz_data": json.dumps({k: {"name": v.get("short", v["name"]), "file": v["file"], "image": img(v["image"], 640, 640),
                                      "acc": v["acc"], "stage": v["stage"], "card": v["card"], "benefits": v.get("benefits", []),

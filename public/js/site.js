@@ -57,6 +57,33 @@
     applyGoal(new URLSearchParams(location.search).get("goal") || "");
   }
 
+  // Header tightens once the page has scrolled.
+  if (header) {
+    var onScroll = function () { header.classList.toggle("scrolled", window.scrollY > 24); };
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  }
+
+  // Big numbers count up the first time they come into view.
+  var nums = document.querySelectorAll("[data-count]");
+  if (nums.length && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target, end = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || "0", 10), t0 = null;
+        if (!end) return;
+        var step = function (t) {
+          if (t0 === null) t0 = t;
+          var k = Math.min(1, (t - t0) / 1100), eased = 1 - Math.pow(1 - k, 3);
+          el.textContent = (end * eased).toFixed(dec);
+          if (k < 1) requestAnimationFrame(step); else el.textContent = end.toFixed(dec);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+    nums.forEach(function (n) { cio.observe(n); });
+  }
+
   // Content rises in as it scrolls into view.
   var items = document.querySelectorAll(".reveal");
   if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) {
